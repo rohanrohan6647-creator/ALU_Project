@@ -1,0 +1,31 @@
+module tb_regfile;
+    reg clk, reset, readwrite, enable;
+    reg [2:0]addr1,addr2,addr;
+    reg [7:0]in;
+    reg [3:0]sel;
+    wire [7:0]R1,R2,c;
+
+    regfile dut(
+        .clk(clk),.reset(reset),.readwrite(readwrite), .enable(enable),.addr1(addr1), .addr2(addr2), .addr(addr),.in(in), .sel(sel),.R1(R1), .R2(R2), .c(c)
+    );
+    initial clk = 0;
+    always #5 clk = ~clk;
+    
+    initial begin
+        $monitor("t=%0t rw=%b R1=%d R2=%d c=%d", $time, readwrite, R1, R2, c);
+        
+  reset=1; enable=0; readwrite=0; #10;
+  reset=0;
+
+  enable=1; readwrite=0;
+  addr=3'd2; in=8'd120; #10;
+  addr=3'd3; in=8'd132; #10;
+
+  readwrite=1;
+  addr1=3'd2; addr2=3'd3;
+  sel=4'b0000; #10;  
+  sel=4'b0001; #10;  
+  sel=4'b0110; #10;
+ $finish;
+    end
+endmodule
