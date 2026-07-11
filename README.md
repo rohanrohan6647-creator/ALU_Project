@@ -59,4 +59,5 @@ Asynchronous reset for deterministic register-file initialization
 
 - design.v          # Register file + ALU RTL
 -  Test_bench.v        # Testbench
+-  ALU_Waveform.png    #simulation output
 -  README.md           # This file
