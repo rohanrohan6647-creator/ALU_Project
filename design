@@ -1,0 +1,56 @@
+`timescale 1ns / 1ps
+module regfile(input clk,
+    input reset,
+    input readwrite,//0-write,1-read
+    input enable,
+    input [2:0]addr1, addr2, 
+    input [2:0] addr,
+    input [7:0] in, 
+    input [3:0] sel,//ALU opcode
+    output reg [7:0] R1, R2,
+    output reg [7:0] c
+);
+    reg [7:0] register [0:7];
+    integer i;
+
+    always@(posedge clk or posedge reset)begin
+        if(reset)begin
+         for(i=0;i<8;i=i+1)
+         register[i]<=8'b0;
+        end
+        else if(enable&&!readwrite)begin
+         register[addr]<=in;
+    end
+    end
+
+    always@(*)begin
+     if(enable&&readwrite)begin        
+          R1 = register[addr1];
+          R2 = register[addr2];
+       end 
+     else begin
+          R1 = 8'd0;
+          R2 = 8'd0;
+        end
+    end
+
+    wire [7:0] a, b;
+    assign a = R1;
+    assign b = R2;
+//ALU
+    always@(*)begin
+    case(sel)
+       4'b0000:c=a+b;
+       4'b0001:c=a-b;
+       4'b0010:c=a*b;
+       4'b0011:c=a/b;
+       4'b0100:c=a<<1;
+       4'b0101:c=a>>1;
+       4'b0110:c=a&b;
+       4'b0111:c=a|b;
+       4'b1000:c=a^b;
+       4'b1001:c=(a>b)?1:0; 
+       default:c=8'd0;
+        endcase
+    end
+endmodule
