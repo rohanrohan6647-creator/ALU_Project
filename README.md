@@ -35,16 +35,16 @@ addr, in, readwrite, enable
 Single shared readwrite control line for compact decode logic
 Asynchronous reset for deterministic register-file initialization
 10 ALU operations selected by a 4-bit opcode
-0000 -Add
-0001 -Subtract
-0010 -Multiply
-0011 -Divide
-0100 -Logical shift left (by 1)
-0101 -Logical shift right (by 1)
-0110 -Bitwise AND
-0111 -Bitwise OR
-1000 -Bitwise XOR
-1001 -Greater-than compare (1/0)
+- 0000 -Add
+- 0001 -Subtract
+- 0010 -Multiply
+- 0011 -Divide
+- 0100 -Logical shift left (by 1)
+- 0101 -Logical shift right (by 1)
+- 0110 -Bitwise AND
+- 0111 -Bitwise OR
+- 1000 -Bitwise XOR
+- 1001 -Greater-than compare (1/0)
 
 
 
