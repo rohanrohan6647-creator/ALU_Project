@@ -13,6 +13,7 @@ This project implements a small register file (8 registers, 8 bits wide) tightly
 - Verilog HDL
 
 ## architecture
+~~~
 addr, in, readwrite, enable
                     │
                     ▼
@@ -27,7 +28,7 @@ addr, in, readwrite, enable
             ┌───────────────┐
      sel───►│      ALU       │───► c
             └───────────────┘
-
+~~~
 ## Features
 
 8 general-purpose 8-bit registers with independent write and dual-read addressing
@@ -35,8 +36,14 @@ Single shared readwrite control line for compact decode logic
 Asynchronous reset for deterministic register-file initialization
 10 ALU operations selected by a 4-bit opcode
 
-## File
+## Future Improvements
+- Add overflow and carry flag support.
+- Parameterize the ALU width (8-bit, 16-bit, 32-bit).
+- Implement signed arithmetic operations.
+- Extend functionality with rotate and increment/decrement operations.
+- 
+## Report
 
-├── design.v          # Register file + ALU RTL
-├── Test_bench.v        # Testbench
-└── README.md           # This file
+- design.v          # Register file + ALU RTL
+-  Test_bench.v        # Testbench
+-  README.md           # This file
